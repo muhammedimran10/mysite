@@ -1,0 +1,22 @@
+{% extends "app/with_out_nev_bar.html" %}
+{% block content %}
+                {% if messages %}
+                    {%for message in messages%}
+                        <div class="alert alert-{{message.tags}} ">
+                            {{message}}
+                        </div>
+                    {%endfor%}
+                {%endif%}
+                <h1 class="ud">LOGIN</h1>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    User Name
+                    <input type="text" name="username" placeholder="user name"><br>
+                    Password
+                    <input type="password" name="password" placeholder="password"><br>
+                    <input class="button primary" type="submit" value="Log in">
+                    <br><br>
+                    Forgot password?
+                    <a class="forgot" href="{% url 'password_reset'%}">Reset password</a>
+                </form>
+{% endblock content %}

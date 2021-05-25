@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+{% block content %}
+{%if id == 1%}
+    <h1 class="ud">Edit Week Entry</h1>
+{%else%}
+    <h1 class="ud">Add New Week Entry</h1>
+{%endif%}
+<form method="POST">
+    {%csrf_token%}
+    DATE{{form.entry_date}}
+    MEMBER{{form.memmber_id}}
+    INVEST AMT{{form.invest_amt}}
+    LOAN AMT{{form.loan_amt}}
+    <!-- INTEREST{{form.interest_amt}} -->
+    REMARKS{{form.remarks}}
+    <br>
+    <input class="button primary" type="submit" value="save">
+    <a href="{%url 'weeklyview'%}" class="button">Close</a>
+</form>
+{% endblock content %}
+

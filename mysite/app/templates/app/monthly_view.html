@@ -1,0 +1,11 @@
+monthly view
+{% extends "app/base.html" %}
+{% load mathfilters %}
+{% block content %}
+<h1 class="ud">MONTHLY REPORTS</h1>
+<div>
+    {%for i in monthlydate%}
+    <h3><li><a href="{{i.month|date:'Y-m-d'}}">{{i.month|date:'F Y'}}</a></li></h3>
+    {%endfor%}
+</div>
+{% endblock content %}

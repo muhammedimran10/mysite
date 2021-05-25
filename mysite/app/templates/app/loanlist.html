@@ -1,0 +1,41 @@
+{% extends "app/base.html" %}
+{% block content %}
+<h1 class="ud">loan</h1>
+
+<form method="GET">
+  DATE (mm/dd/yyyy){{myFilter.form.loan_date}}
+  MEMBER{{myFilter.form.memmber_id}}
+
+
+  <br>
+  <input class="button" type="submit" value="search">
+  <a class="button primary" href="{%url 'giveloan'%}">Add new loan</a>
+</form>
+  <div class="container content">
+    <div class="table100 ver1 m-b-110">
+      <table data-vertable="ver1">
+          <thead>
+              <tr class="row100 head">
+                  <th class="column100 column1" data-column="column1">Date</th>
+                  <th class="column100 column1" data-column="column1">member</th>
+                  <th class="column100 column1" data-column="column1">Total loan Amt</th>
+                  <th class="column100 column1" data-column="column1">Remarks</th>
+                  <th class="column100 column1" data-column="column1"></th>
+              </tr>
+          </thead>
+            <tbody>
+              {% for l in loanob %}
+                <tr class="row100">
+                    <td class="column100 column1" data-column="column1">{{l.loan_date}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|title}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.loan_amt}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.remarks}}</td>
+                    <td class="column100 column1" data-column="column1"><a class="button" href="{% url 'updateloan' l.id %}">Edit</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endblock content %}

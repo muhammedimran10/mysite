@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+{% load mathfilters %}
+{% block content %}
+<h1 class="ud content"> MY GROUP DETAIL</h1>
+    <div class="container content">
+        <div class="table100 ver1 m-b-110">
+          <table data-vertable="ver1">
+              <thead>
+                  <tr class="row100 head">
+                      <th class="column100 column1" data-column="column1">Total Invest get</th>
+                      <th class="column100 column1" data-column="column1">Loan Given</th>
+                      <th class="column100 column1" data-column="column1">loan Received</th>
+                      <th class="column100 column1" data-column="column1">Interest Received</th>
+                      <th class="column100 column1" data-column="column1">loan & interest</th>
+                      <th class="column100 column1" data-column="column1">Cash in hand</th>
+                  </tr>
+              </thead>
+                <tbody>
+                    <tr class="row100">
+                        <td class="column100 column1" data-column="column1">{{total_invest.invest_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{total_loan.loan_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{loan_amt_get.loan_amt__sum|sub:interest}}</td>
+                        <td class="column100 column1" data-column="column1">{{interest}}</td>
+                        <td class="column100 column1" data-column="column1">{{loan_amt_get.loan_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{total_invest.invest_amt__sum|add:loan_amt_get.loan_amt__sum|sub:total_loan.loan_amt__sum}}</td>
+                    </tr>
+                  </tbody>
+          </table>
+      </div>
+    </div>
+{% endblock content %}

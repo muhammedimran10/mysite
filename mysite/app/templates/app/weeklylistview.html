@@ -1,0 +1,42 @@
+{% extends "app/base.html" %}
+{% block content %}
+<h1 class="ud">Weekly Entry</h1>
+<form method="GET">
+    DATE (mm/dd/yyyy) {{myFilter.form.entry_date}}
+    MEMBER {{myFilter.form.memmber_id}}
+    <br>    
+    <input class="button primary" type="submit" value="Show">
+    <a class="button " href="{% url 'weeklyentry'%}">Add</a>
+</form>
+          <!-- dhvjdhjvdke2ddedvkjh? -->
+      <div class="container content">
+          <div class="table100 ver1 m-b-110">
+            <table data-vertable="ver1">
+                <thead>
+                    <tr class="row100 head">
+                        <th class="column100 column1" data-column="column1">Date</th>
+                        <th class="column100 column1" data-column="column1">Member</th>
+                        <th class="column100 column1" data-column="column1">Invest Amt</th>
+                        <th class="column100 column1" data-column="column1">Loan Amt</th>
+                        <!-- <th class="column100 column1" data-column="column1">Interest Amt</th> -->
+                        <th class="column100 column1" data-column="column1">Remarks</th>
+                        <th class="column100 column1" data-column="column1">edit</th> 
+                    </tr>
+                </thead>
+                {% for l in w_list %}
+                  <tbody>
+                      <tr class="row100">
+                          <td class="column100 column1" data-column="column1">{{l.entry_date}}</td>
+                          <td class="column100 column1" data-column="column1">{{l.memmber_id|title}}</td>
+                          <td class="column100 column1" data-column="column1">{{l.invest_amt}}</td>
+                          <td class="column100 column1" data-column="column1">{{l.loan_amt}}</td>
+                          <!-- <td class="column100 column1" data-column="column1">{{l.interest_amt}}</td> -->
+                          <td class="column100 column1" data-column="column1">{{l.remarks}}</td>
+                          <td><a class="button" href="{% url 'updateweek' l.id%}">Edit</a></td>
+                      </tr>
+                    </tbody>
+               {% endfor %} 
+            </table>
+        </div>
+      </div>
+{% endblock content %}

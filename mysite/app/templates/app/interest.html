@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+{% block content %}
+<form method="POST">
+    {%csrf_token%}
+    DATE {{form.date}}
+    MEMBER{{form.memmber_id}}
+    INTEREST AMT {{form.interest_amt}}
+    <br><br>
+    <input class="button primary" type="submit" value="Save">
+    <a href="{%url 'monthlyview'%}" class="button">Cancel</a>
+</form>
+
+
+{% endblock content %}

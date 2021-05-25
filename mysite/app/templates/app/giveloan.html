@@ -1,0 +1,19 @@
+{% extends "app/base.html" %}
+{% block content %}
+{%if d == 1%}
+    <h3 class="ud">Edit Loan</h3>
+{%else%}
+    <h3 class="ud">Loan Give</h3>
+{%endif%}
+<form method="POST">
+    {%csrf_token%}
+    Date {{form.loan_date}}
+    Memmber {{form.memmber_id}}
+    Loan Amt {{form.loan_amt}}
+    Remarks {{form.remarks}}
+    <br>
+    <input class="button primary" type="submit" value="save">
+    <a class="button" href="{%url 'loanview' %}">Cancel</a>
+</form>
+
+{% endblock content %}

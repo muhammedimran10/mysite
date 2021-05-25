@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+{% block content %}
+<div class="container ofh ">
+    <h1 class="ud">Members</h1>
+    <ol>
+    {%for m in liobject%}
+    
+        <li><h4><a href="{{m.id}}/">{{m|title}}</a></h4></li>
+    
+    {%endfor%}
+    </ol>
+    <a class="button default" href="{% url 'registeruser' %}">Add memmber</a>
+</div>
+{% endblock content %}

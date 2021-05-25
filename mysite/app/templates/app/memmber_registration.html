@@ -1,0 +1,47 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block content %}
+<h3 class="ud">Edit Profile</h3>
+                    <form method="POST">
+                        {%csrf_token%}
+                        <div class="form-row">
+                            <div class="name">Full name</div>
+                            <div class="input--style-6 value">
+                                {{form.fullname}}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Address1</div>
+                            <div class="input--style-6 value">
+                                {{form.address1}}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Address2</div>
+                            <div class="input--style-6 value">
+                                {{form.address2}}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Address3</div>
+                            <div class="input--style-6 value">
+                                {{form.address3}}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Mobile no</div>
+                            <div class="input--style-6 value">
+                                {{form.mobile_no}}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Active</div>
+                            <div>{{form.active}}</div>
+                        </div>
+                        
+                        <div>
+                            <input class="button primary" type="submit" value="save">   
+                            <a class="button" href="{%url 'memmberlist'%}">cancel</a></div>  
+                    </form>
+                {{form.errors}}
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+{% block content %}
+    <section class="container">
+        <h2 class="ud">Member Register</h2>
+        <form method="POST" action="">{% csrf_token %}
+           
+            <div class="row gtr-uniform">
+                <div class="col-12">
+                    {{form.username.label}}
+                    {{form.username}}
+                    <div class="danger">
+                        {{form.errors.username}}
+                    </div>     
+                </div>
+                <div class="col-12">
+                    {{form.email.label}}
+                    {{form.email}}
+                    <div class="danger">
+                        {{form.errors.email}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    {{form.password1.label}}
+                    {{form.password1}}
+                </div>
+                <div class="col-12">
+                    {{form.password2.label}}
+                    {{form.password2}}
+                    <div class="danger">
+                        {{form.errors.password}}
+                    </div>
+                </div>
+                <div class="danger">
+                    {{form.errors.password2}}
+                </div>
+                <div class="col-12">
+                    <ul class="actions">
+                        <li><input type="submit" class="button primary bb" /></li>
+                        <li><input type="reset" class="button bb" value="Reset" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock content %}
+<!-- Form -->

@@ -1,0 +1,84 @@
+{% extends "app/base.html" %}
+{% load mathfilters %}
+{% block content %}
+<div>
+    <h3 class="ud">Profile</h3>
+    <ul class="sn">
+        <li><h3>{{memmberob.fullname}}</h3></li>
+        <li class="bli"><h6>{{memmberob.user.email}}</h6></li>
+        <li class="bli"><h6>Phno : {{memmberob.mobile_no}}</h6></li>
+        <li class="bli"><p><h6>{{memmberob.address1}},</h6></p></li>
+        <li class="bli"><p><h6>{{memmberob.address2}},</h6></p></li>
+        <li class="bli"><p><h6>{{memmberob.address3}}</h6></p></li>
+    </ul>
+    <br>
+    <a class="button" href="{%url 'editmemmber' memmberob.id %}">Edit</a>
+    <br>
+    <br>
+    <div class="container content">
+        <div class="table100 ver1 m-b-110">
+        <table data-vertable="ver1">
+            <thead>
+                <tr class="row100 head">
+                    <th class="column100 column1" data-column="column1">Member</th>
+                    <th class="column100 column1" data-column="column1">Invest Amt</th>
+                    <th class="column100 column1" data-column="column1">loan Issude</th>
+                    <th class="column100 column1" data-column="column1">interest</th>
+                    <th class="column100 column1" data-column="column1">total loan</th>
+                    <th class="column100 column1" data-column="column1">Loan Repaid</th>
+                    <th class="column100 column1" data-column="column1">Balance Loan</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr class="row100">
+                        <td class="column100 column1" data-column="column1">{{memmberob}}</td>
+                        <td class="column100 column1" data-column="column1">{{totalinvest.invest_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{totalloan.loan_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{interestamt}}</td>
+                        <td class="column100 column1" data-column="column1">{{interestamt|add:totalloan.loan_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{loanamt.loan_amt__sum}}</td>
+                        <td class="column100 column1" data-column="column1">{{totalloan.loan_amt__sum|sub:loanamt.loan_amt__sum|add:interestamt}}</td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+<br><br>
+    <h1 class="ud">Last Five Transaction</h1>
+<br>
+    <div class="container content">
+        <div class="table100 ver1 m-b-110">
+          <table data-vertable="ver1">
+              <thead>
+                  <tr class="row100 head">
+                      <th class="column100 column1" data-column="column1">Date</th>
+                      <th class="column100 column1" data-column="column1">Member</th>
+                      <th class="column100 column1" data-column="column1">Invest Amt</th>
+                      <th class="column100 column1" data-column="column1">Loan Amt</th>
+                      <!-- <th class="column100 column1" data-column="column1">Interest Amt</th> -->
+                      <th class="column100 column1" data-column="column1">Remarks</th>
+                      {%if request.user.is_staff%}
+                      <th class="column100 column1" data-column="column1">edit</th> 
+                      {%endif%}
+                  </tr>
+              </thead>
+              {% for l in last_tra %}
+                <tbody>
+                    <tr class="row100">
+                        <td class="column100 column1" data-column="column1">{{l.entry_date}}</td>
+                        <td class="column100 column1" data-column="column1">{{l.memmber_id}}</td>
+                        <td class="column100 column1" data-column="column1">{{l.invest_amt}}</td>
+                        <td class="column100 column1" data-column="column1">{{l.loan_amt}}</td>
+        
+                        <td class="column100 column1" data-column="column1">{{l.remarks}}</td>
+                        {%if request.user.is_staff%}
+                        <td><a class="button" href="{% url 'updateweek' l.id%}">Edit</a></td>
+                        {%endif%}
+                    </tr>
+                  </tbody>
+             {% endfor %} 
+          </table>
+      </div>
+    </div>
+
+</div>
+{% endblock content %}

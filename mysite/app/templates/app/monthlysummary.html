@@ -1,0 +1,54 @@
+{% extends "app/base.html"%}
+{% load mathfilters %}
+{% load month_tag %}
+{% block content %}
+<h2 class="ud">Monthly Report –{{date|date:"F Y"}}</h2>
+<br>
+
+  <div class="container content">
+    <div class="table100 ver1 m-b-110">
+      <table data-vertable="ver1">
+          <thead>
+              <tr class="row100 head">
+                  <th class="column100 column1" data-column="column1">Member</th>
+                  <th class="column100 column1" data-column="column1">Invest</th>
+                  <th class="column100 column1" data-column="column1">Opn Investment Amt</th>
+                  <th class="column100 column1" data-column="column1">Total Invest</th>
+                  
+                  <th class="column100 column1" data-column="column1">Opn Loan Amt</th>
+                  <th class="column100 column1" data-column="column1">Interest</th>
+                  <th class="column100 column1" data-column="column1">Total Loan Amt</th>
+                  <th class="column100 column1" data-column="column1">Loan Reseved</th>
+                  <th class="column100 column1" data-column="column1">Balance Loan</th>
+                  <th class="column100 column1" data-column="column1"></th>
+              </tr>
+          </thead>
+          {% for l in monthlyresult %}
+            <tbody>
+                <tr class="row100">
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id__fullname|title}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.invest}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|total_pm_invest:date}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|total_invest:date}}</td>
+                    
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|p_loan_amt:date}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|interest_enterd:date}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|totalloan:date}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.loan_amt}}</td>
+                    <td class="column100 column1" data-column="column1">{{l.memmber_id|balance:date}}</td>
+                    {%if l.memmber_id|interest_enterd:date == None%}
+                    <td class="column100 column1" data-column="column1">
+                      <a class="button" href="{%url 'createinterest'%}">Add</a>
+                    </td>
+                    {%else%}
+                    <td class="column100 column1" data-column="column1">
+                      <a class="button" href="{%url 'updatein' l.memmber_id date|date:'Y-m-d'%}">Edit</a>
+                    </td>
+                    {%endif%} 
+                </tr>
+              {% endfor %}
+              </tbody> 
+      </table>
+    </div>
+  </div>
+{% endblock content %}
